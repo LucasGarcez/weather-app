@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerNavigator} from './DrawerNavigator';
-import {WeatherScreen} from '../screens/WeatherScreen/WeatherScreen';
+import {WeatherScreen} from '@screens/WeatherScreen/WeatherScreen';
 
 export type RootStackParamList = {
   DrawerNavigator: undefined;
