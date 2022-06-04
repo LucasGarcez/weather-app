@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import {AddressScreen} from '@screens/AddressScreen/AddressScreen';
 
 const Drawer = createDrawerNavigator();

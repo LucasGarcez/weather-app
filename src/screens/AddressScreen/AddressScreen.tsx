@@ -1,6 +1,7 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Button, Text, View} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
 
 export function AddressScreen() {
   const navigation = useNavigation();
