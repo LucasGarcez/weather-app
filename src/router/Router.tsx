@@ -5,11 +5,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {WeatherScreen} from '@screens/WeatherScreen/WeatherScreen';
 
+import {GeoCoordinates} from 'src/models/Geolocation';
+
 import {DrawerNavigator} from './DrawerNavigator';
 
 export type RootStackParamList = {
   DrawerNavigator: undefined;
-  WeatherScreen: undefined;
+  WeatherScreen: {geoCoordinates: GeoCoordinates};
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
