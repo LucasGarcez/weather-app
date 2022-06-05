@@ -2,10 +2,11 @@ import Geolocation from 'react-native-geolocation-service';
 
 import {permissionService} from '@services/permissionService/permissionService';
 
+import {geoLocationApi} from 'src/api/geolocation/geolocationApi';
+import {Address} from 'src/models/Address';
 import {GeoLocationError} from 'src/models/error/GeoLocationError';
 import {PermissionError} from 'src/models/error/PermissionError';
 
-// https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-reverse-geocode-brief.html
 async function getCurrentCoordinates(): Promise<Geolocation.GeoCoordinates> {
   const permissionStatus = await permissionService.checkLocation();
   if (permissionStatus !== 'granted') {
@@ -25,4 +26,19 @@ async function getCurrentCoordinates(): Promise<Geolocation.GeoCoordinates> {
   });
 }
 
-export const geolocationService = {getCurrentCoordinates};
+async function getAddressByCoordinates(
+  lat: string | number,
+  long: string | number,
+): Promise<Address> {
+  const resp = await geoLocationApi.searchByCoordinates(
+    lat.toString(),
+    long.toString(),
+  );
+  const first = resp.items[0];
+  return first.address;
+}
+
+export const geolocationService = {
+  getCurrentCoordinates,
+  getAddressByCoordinates,
+};
