@@ -1,33 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import React, {useState} from 'react';
 
+import {Paragraph} from '@components/atoms/Text';
+import {ScreenTemplate} from '@components/templates/screen/ScreenTemplate';
 import {StackScreenProps} from '@react-navigation/stack';
 
 import {weatherService} from '@services/weatherService/weatherService';
 
 import {RootStackParamList} from 'src/router/Router';
+import {WeatherOverview} from './components/WeatherOverview/WeatherOverview';
+import {SelectWeekDay} from '@components/molecules/SelectWeekDay/SelectWeekDay';
+import {DaysOfWeek} from 'src/models/DaysOfWeek';
 
 type ScreenProps = StackScreenProps<RootStackParamList, 'WeatherScreen'>;
 export function WeatherScreen({route, navigation}: ScreenProps) {
-  const [test, setTest] = useState('s');
-  const {geoCoordinates} = route.params;
-
-  useEffect(() => {
-    getWeather();
-  }, []);
-
-  async function getWeather() {
-    const resp = await weatherService.getCurrentWeather(
-      geoCoordinates.latitude,
-      geoCoordinates.longitude,
-    );
-
-    setTest(resp.current.clouds.toString());
-  }
+  const [day, setDay] = useState<DaysOfWeek>(DaysOfWeek.Monday);
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Weather Screen</Text>
-      {test && <Text>{test}</Text>}
-    </View>
+    <ScreenTemplate>
+      <WeatherOverview />
+      <SelectWeekDay value={day} onChangeValue={setDay} />
+    </ScreenTemplate>
   );
 }
