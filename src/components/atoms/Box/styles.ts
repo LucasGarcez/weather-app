@@ -33,3 +33,12 @@ export const Box = styled.View<BoxProps>`
   ${border};
   ${position};
 `;
+export const PressableBox = styled.Pressable<BoxProps>`
+  ${flexbox};
+  ${margin};
+  ${padding};
+  ${layout};
+  ${color};
+  ${border};
+  ${position};
+`;

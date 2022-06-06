@@ -1,2 +1,2 @@
-export {Box} from './styles';
+export {Box, PressableBox} from './styles';
 export type {BoxProps} from './styles';
