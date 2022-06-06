@@ -27,11 +27,11 @@ export function WeatherDetails({
 }: WeatherDetailsProps) {
   const list: ItemProps[] = [
     {iconName: 'water-percent', value: humidity, label: 'umidade'},
-    {iconName: 'water-percent', value: pressure, label: 'pressão'},
-    {iconName: 'water-percent', value: uvi, label: 'UV'},
-    {iconName: 'water-percent', value: wind_speed, label: 'vento'},
-    {iconName: 'water-percent', value: visibility, label: 'visibilidade'},
-    {iconName: 'water-percent', value: clouds, label: 'nuvens'},
+    {iconName: 'earth', value: pressure, label: 'pressão'},
+    {iconName: 'weather-sunny', value: uvi, label: 'UV'},
+    {iconName: 'tailwind', value: wind_speed, label: 'vento'},
+    {iconName: 'eye', value: visibility, label: 'visibilidade'},
+    {iconName: 'cloud', value: clouds, label: 'nuvens'},
   ];
 
   console.log({list});
