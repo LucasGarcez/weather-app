@@ -9,6 +9,7 @@ target 'WeatherApp' do
 
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   # Flags change depending on the env values.
   flags = get_default_flags()
