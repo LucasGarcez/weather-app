@@ -1,10 +1,6 @@
 import {DefaultTheme} from 'styled-components';
 
 export const darkTheme: DefaultTheme = {
-  borderRadius: {
-    default: 8,
-  },
-
   space: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48],
   radii: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40],
 
