@@ -11,6 +11,7 @@ module.exports = {
           tests: ['./tests/'],
           '@screens': './src/screens',
           '@services': './src/services',
+          '@components': './src/components',
         },
       },
     ],
