@@ -1,19 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Text, View} from 'react-native';
 
+import {Box} from '@components/atoms/Box';
+import {Button} from '@components/atoms/Button/Button';
+import {ScreenTemplate} from '@components/templates/screen/ScreenTemplate';
 import {useNavigation} from '@react-navigation/native';
 import Geolocation from 'react-native-geolocation-service';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTheme} from 'styled-components/native';
 
 import {geolocationService} from '@services/geolocationService/geolocationService';
 
-import {GeoCoordinates} from 'src/models/Geolocation';
 import {Address} from 'src/models/Address';
+import {GeoCoordinates} from 'src/models/Geolocation';
+
+import {InfoList} from './components/InfoList/InfoList';
 
 export function AddressScreen() {
   const [geoCoordinates, setGeoCoordinates] = useState<GeoCoordinates>();
   const [address, setAddress] = useState<Address>();
-
   const [error, setError] = useState<Geolocation.PositionError>();
+  const {colors} = useTheme();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -51,18 +57,47 @@ export function AddressScreen() {
   }
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Address Screen</Text>
+    <ScreenTemplate>
+      <Box alignItems="center">
+        <Icon name="map-marker-outline" size={150} color={colors.primary} />
+      </Box>
 
-      {geoCoordinates && <Text>COORDs: {geoCoordinates.latitude}</Text>}
-      {address && <Text>ADDRESS: {address.city}</Text>}
-      {error && <Text>ERROR: {error}</Text>}
       {geoCoordinates && (
-        <Button
-          title="ver informações climáticas"
-          onPress={() => navigation.navigate('WeatherScreen', {geoCoordinates})}
+        <InfoList
+          title="Coordenadas"
+          items={[
+            {label: 'Latitude', value: geoCoordinates.latitude},
+            {label: 'Longitude', value: geoCoordinates.latitude},
+          ]}
         />
       )}
-    </View>
+
+      <Box mt={4}>
+        {address && (
+          <InfoList
+            title="Endereço"
+            items={[
+              {label: 'País', value: address.countryName},
+              {label: 'Estado', value: address.state},
+              {label: 'Cidade', value: address.city},
+              {label: 'Rua', value: address.street},
+              {label: 'Número', value: address.houseNumber},
+            ]}
+          />
+        )}
+      </Box>
+
+      {geoCoordinates && address && (
+        <Button
+          mt={8}
+          variant="secondary"
+          iconName="weather-sunny"
+          title="VER CLIMA"
+          onPress={() =>
+            navigation.navigate('WeatherScreen', {geoCoordinates, address})
+          }
+        />
+      )}
+    </ScreenTemplate>
   );
 }
