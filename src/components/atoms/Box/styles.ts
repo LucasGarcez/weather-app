@@ -42,3 +42,12 @@ export const PressableBox = styled.Pressable<BoxProps>`
   ${border};
   ${position};
 `;
+export const TouchableBox = styled.TouchableOpacity<BoxProps>`
+  ${flexbox};
+  ${margin};
+  ${padding};
+  ${layout};
+  ${color};
+  ${border};
+  ${position};
+`;

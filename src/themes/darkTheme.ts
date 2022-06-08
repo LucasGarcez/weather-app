@@ -6,9 +6,11 @@ export const darkTheme: DefaultTheme = {
 
   colors: {
     primary: '#BB86FC',
+    onPrimary: '#FFF',
     secondary: '#A91079',
     background: '#121212',
     onBackground: '#FFF',
     transparent: 'transparent',
+    gray: '#B8B8B8',
   },
 };
