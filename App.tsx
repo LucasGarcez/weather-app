@@ -4,9 +4,8 @@ import React from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import {ThemeProvider} from 'styled-components/native';
 
-import {darkTheme} from 'src/themes/darkTheme';
+import {ThemeProvider} from 'src/themes/Theme';
 
 import {Router} from './src/router/Router';
 
@@ -16,7 +15,7 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider>
         <Router />
       </ThemeProvider>
     </QueryClientProvider>
