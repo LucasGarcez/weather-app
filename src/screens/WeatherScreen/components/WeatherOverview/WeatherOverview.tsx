@@ -10,9 +10,10 @@ import {useTheme} from 'styled-components/native';
 import {weatherService} from '@services/weatherService/weatherService';
 
 import {Weather} from 'src/api/weather/WeatherAPIModels';
+import {formatUtils} from 'src/utils/formatUtils';
 
 interface Props {
-  city: string;
+  city?: string;
   weather: Weather;
   temp: number;
 }
@@ -28,7 +29,7 @@ export function WeatherOverview({city, weather, temp}: Props) {
         source={{uri: weatherService.getIconURL(weather.icon)}}
       />
       <Box alignItems={'flex-end'}>
-        <Heading>{Math.round(temp)}°</Heading>
+        <Heading>{formatUtils.formatTem(temp)}</Heading>
 
         <Box mt={4} flexDirection="row" alignItems="center">
           <Icon
@@ -36,9 +37,11 @@ export function WeatherOverview({city, weather, temp}: Props) {
             size={20}
             color={colors.onBackground}
           />
-          <Paragraph ml={2} size="large">
-            {city}
-          </Paragraph>
+          {city && (
+            <Paragraph ml={2} size="large">
+              {city}
+            </Paragraph>
+          )}
         </Box>
       </Box>
     </BoxCard>
