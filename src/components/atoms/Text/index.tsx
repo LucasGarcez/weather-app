@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {DefaultTheme, useTheme} from 'styled-components';
+import {DefaultTheme, useTheme} from 'styled-components/native';
 
 import {typographySizes} from './sizes';
 import {BaseText, BaseTextProps} from './styles';

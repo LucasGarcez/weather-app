@@ -1,4 +1,4 @@
-import {DefaultTheme} from 'styled-components';
+import {DefaultTheme} from 'styled-components/native';
 
 export const darkTheme: DefaultTheme = {
   space: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48],
