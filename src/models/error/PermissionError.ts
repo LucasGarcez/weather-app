@@ -4,7 +4,7 @@ export class PermissionError extends Error {
   status: PermissionStatus;
 
   constructor(status: PermissionStatus) {
-    super('permission error');
+    super(status);
     this.status = status;
   }
 }
