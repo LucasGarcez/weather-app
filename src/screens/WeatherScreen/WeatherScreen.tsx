@@ -1,42 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import {Heading, Paragraph} from '@components/atoms/Text';
 import {SelectWeekDay} from '@components/molecules/SelectWeekDay/SelectWeekDay';
 import {ScreenTemplate} from '@components/templates/screen/ScreenTemplate';
 import {StackScreenProps} from '@react-navigation/stack';
+import {useQuery} from 'react-query';
 
 import {weatherService} from '@services/weatherService/weatherService';
 
-import {WeatherOneCallResponse} from 'src/api/weather/WeatherAPIModels';
 import {DaysOfWeek} from 'src/models/DaysOfWeek';
 import {RootStackParamList} from 'src/router/Router';
+import {dateUtils} from 'src/utils/dateUtils';
 
+import {DayWeatherInfo} from './components/DayWeatherInfo/DayWeatherInfo';
 import {WeatherDetails} from './components/WeatherDetails/WeatherDetails';
 import {WeatherOverview} from './components/WeatherOverview/WeatherOverview';
 
 type ScreenProps = StackScreenProps<RootStackParamList, 'WeatherScreen'>;
 export function WeatherScreen({route}: ScreenProps) {
-  const [day, setDay] = useState<DaysOfWeek>(DaysOfWeek.Monday);
-  const [weatherInfo, setWeatherInfo] = useState<WeatherOneCallResponse>();
-  const {geoCoordinates, address} = route.params;
+  const [day, setDay] = useState<DaysOfWeek>(dateUtils.getCurrentDayOfWeek());
 
-  useEffect(() => {
-    getWeather();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const {
+    geoCoordinates: {latitude, longitude},
+    address,
+  } = route.params;
 
-  async function getWeather() {
-    try {
-      const _weatherInfo = await weatherService.getCurrentWeather(
-        geoCoordinates.latitude,
-        geoCoordinates.longitude,
-      );
-
-      setWeatherInfo(_weatherInfo);
-    } catch (error) {
-      //TODO: Handle Error
-    }
-  }
+  const {data: weatherInfo} = useQuery('weather', () =>
+    weatherService.getCurrentWeather(latitude, longitude),
+  );
 
   return (
     <ScreenTemplate canGoBack>
@@ -45,7 +36,7 @@ export function WeatherScreen({route}: ScreenProps) {
       </Heading>
       {weatherInfo && (
         <WeatherOverview
-          city={address.city}
+          city={address?.city}
           temp={weatherInfo.current.temp}
           weather={weatherInfo.current.weather[0]}
         />
@@ -70,6 +61,7 @@ export function WeatherScreen({route}: ScreenProps) {
         Próximos dias
       </Heading>
       <SelectWeekDay value={day} onChangeValue={setDay} />
+      {weatherInfo && <DayWeatherInfo day={day} daily={weatherInfo?.daily} />}
     </ScreenTemplate>
   );
 }
