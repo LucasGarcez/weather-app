@@ -26,7 +26,7 @@ export const ScreenTemplate: React.FC<Props> = ({
       {...rest}>
       {canGoBack && (
         <PressableBox mb={4} onPress={navigation.goBack}>
-          <Icon name={'arrow-left'} size={30} color={colors.onBackground} />
+          <Icon name={'arrow-left'} size={30} color={colors.secondary} />
         </PressableBox>
       )}
       {children}
