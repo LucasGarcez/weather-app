@@ -5,7 +5,7 @@ import {ThemeProvider as ThemeProviderStyled} from 'styled-components/native';
 import {darkTheme} from './darkTheme';
 import {lightTheme} from './lightTheme';
 
-enum ThemeType {
+export enum ThemeType {
   light = 'light',
   dark = 'dark',
 }
@@ -14,7 +14,7 @@ const themes = {
   dark: darkTheme,
 };
 export const ThemeContext = createContext({
-  theme: darkTheme,
+  theme: 'light',
   toggleTheme: () => {},
 });
 export const ThemeProvider: React.FunctionComponent = ({children}) => {
@@ -29,7 +29,7 @@ export const ThemeProvider: React.FunctionComponent = ({children}) => {
   }
 
   return (
-    <ThemeContext.Provider value={{theme: themes[theme], toggleTheme}}>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
       <ThemeProviderStyled theme={themes[theme]}>
         {children}
       </ThemeProviderStyled>
