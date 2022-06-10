@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {ScrollView} from 'react-native';
 
 import {Heading, Paragraph} from '@components/atoms/Text';
 import {SelectWeekDay} from '@components/molecules/SelectWeekDay/SelectWeekDay';
@@ -31,37 +32,39 @@ export function WeatherScreen({route}: ScreenProps) {
 
   return (
     <ScreenTemplate canGoBack>
-      <Heading mb={4} size="large">
-        Clima Agora
-      </Heading>
-      {weatherInfo && (
-        <WeatherOverview
-          city={address?.city}
-          temp={weatherInfo.current.temp}
-          weather={weatherInfo.current.weather[0]}
-        />
-      )}
-      {weatherInfo && (
-        <Paragraph mt={4} textAlign="center" size="large">
-          {weatherInfo.current.weather[0].description}
-        </Paragraph>
-      )}
-      {weatherInfo && (
-        <WeatherDetails
-          humidity={weatherInfo.current.humidity}
-          pressure={weatherInfo.current.pressure}
-          uvi={weatherInfo.current.uvi}
-          wind_speed={weatherInfo.current.wind_speed}
-          visibility={weatherInfo.current.visibility}
-          clouds={weatherInfo.current.clouds}
-        />
-      )}
+      <ScrollView nestedScrollEnabled>
+        <Heading mb={4} size="large">
+          Clima Agora
+        </Heading>
+        {weatherInfo && (
+          <WeatherOverview
+            city={address?.city}
+            temp={weatherInfo.current.temp}
+            weather={weatherInfo.current.weather[0]}
+          />
+        )}
+        {weatherInfo && (
+          <Paragraph mt={4} textAlign="center" size="large">
+            {weatherInfo.current.weather[0].description}
+          </Paragraph>
+        )}
+        {weatherInfo && (
+          <WeatherDetails
+            humidity={weatherInfo.current.humidity}
+            pressure={weatherInfo.current.pressure}
+            uvi={weatherInfo.current.uvi}
+            wind_speed={weatherInfo.current.wind_speed}
+            visibility={weatherInfo.current.visibility}
+            clouds={weatherInfo.current.clouds}
+          />
+        )}
 
-      <Heading mt={8} mb={4} size="large">
-        Próximos dias
-      </Heading>
-      <SelectWeekDay value={day} onChangeValue={setDay} />
-      {weatherInfo && <DayWeatherInfo day={day} daily={weatherInfo?.daily} />}
+        <Heading mt={8} mb={4} size="large">
+          Próximos dias
+        </Heading>
+        <SelectWeekDay value={day} onChangeValue={setDay} />
+        {weatherInfo && <DayWeatherInfo day={day} daily={weatherInfo?.daily} />}
+      </ScrollView>
     </ScreenTemplate>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, FlatList, ListRenderItemInfo} from 'react-native';
+import {Dimensions} from 'react-native';
 
 import {Box} from '@components/atoms/Box';
 import {Paragraph} from '@components/atoms/Text';
@@ -25,28 +25,31 @@ export function WeatherDetails({
   visibility,
   clouds,
 }: WeatherDetailsProps) {
-  const list: ItemProps[] = [
+  const line1: ItemProps[] = [
     {iconName: 'water-percent', value: humidity, label: 'umidade'},
     {iconName: 'earth', value: pressure, label: 'pressão'},
     {iconName: 'weather-sunny', value: uvi, label: 'UV'},
+  ];
+
+  const line2: ItemProps[] = [
     {iconName: 'tailwind', value: wind_speed, label: 'vento'},
     {iconName: 'eye', value: visibility, label: 'visibilidade'},
     {iconName: 'cloud', value: clouds, label: 'nuvens'},
   ];
 
-  console.log({list});
+  const lines = [line1, line2];
 
-  function renderItem({item}: ListRenderItemInfo<ItemProps>) {
-    return <Item {...item} />;
-  }
   return (
     <BoxCard padding={0} mt={4}>
-      <FlatList
-        numColumns={NUM_COLUMNS}
-        keyExtractor={item => item.label}
-        renderItem={renderItem}
-        data={list}
-      />
+      {lines.map(line => {
+        return (
+          <Box flexDirection="row">
+            {line.map(item => (
+              <Item {...item} />
+            ))}
+          </Box>
+        );
+      })}
     </BoxCard>
   );
 }
