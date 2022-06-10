@@ -23,6 +23,6 @@ type ButtonIConProps = {
   color: keyof ColorsType;
 };
 export const ButtonIcon = styled(Icon)<ButtonIConProps>`
-  margin-right: ${({theme}) => theme.space[3]};
+  margin-right: ${({theme}) => theme.space[3]}px;
   color: ${({theme, color}) => theme.colors[color]};
 `;

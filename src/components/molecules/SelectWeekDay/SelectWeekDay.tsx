@@ -27,7 +27,7 @@ export function SelectWeekDay({value, onChangeValue}: Props) {
   }
 
   return (
-    <Box marginY={4}>
+    <Box>
       <FlatList
         data={DAYS}
         renderItem={renderItem}

@@ -43,6 +43,7 @@ const buttonPrimary: ButtonVariant = {
     },
   },
 };
+
 const buttonSecondary: ButtonVariant = {
   enabled: {
     button: {

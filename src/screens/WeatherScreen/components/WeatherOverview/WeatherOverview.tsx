@@ -3,13 +3,13 @@ import {Image} from 'react-native';
 
 import {Box} from '@components/atoms/Box';
 import {Heading, Paragraph} from '@components/atoms/Text';
+import {BoxCard} from '@components/molecules/BoxCard/BoxCard';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTheme} from 'styled-components/native';
 
 import {weatherService} from '@services/weatherService/weatherService';
 
 import {Weather} from 'src/api/weather/WeatherAPIModels';
-import {BoxCard} from '@components/molecules/BoxCard/BoxCard';
 
 interface Props {
   city: string;

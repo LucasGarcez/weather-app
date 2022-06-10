@@ -40,7 +40,7 @@ export function WeatherDetails({
     return <Item {...item} />;
   }
   return (
-    <BoxCard padding={0} mt={8}>
+    <BoxCard padding={0} mt={4}>
       <FlatList
         numColumns={NUM_COLUMNS}
         keyExtractor={item => item.label}
