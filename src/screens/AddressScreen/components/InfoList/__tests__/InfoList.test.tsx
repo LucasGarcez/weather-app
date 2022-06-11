@@ -1,4 +1,4 @@
-import React, {ComponentProps, ComponentType} from 'react';
+import React, {ComponentProps} from 'react';
 
 import {render} from '@testing-library/react-native';
 import {ComponentWrapper} from '__tests__/ComponentWrapper';
