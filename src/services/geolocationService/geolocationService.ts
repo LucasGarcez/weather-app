@@ -6,8 +6,9 @@ import {geoLocationApi} from 'src/api/geolocation/geolocationApi';
 import {Address} from 'src/models/Address';
 import {GeoLocationError} from 'src/models/error/GeoLocationError';
 import {PermissionError} from 'src/models/error/PermissionError';
+import {GeoCoordinates} from 'src/models/Geolocation';
 
-async function getCurrentCoordinates(): Promise<Geolocation.GeoCoordinates> {
+async function getCurrentCoordinates(): Promise<GeoCoordinates> {
   const permissionStatus = await permissionService.checkLocation();
   if (permissionStatus !== 'granted') {
     throw new PermissionError(permissionStatus);
