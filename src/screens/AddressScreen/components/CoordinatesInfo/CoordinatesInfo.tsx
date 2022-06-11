@@ -6,13 +6,14 @@ import {useQuery} from 'react-query';
 import {geolocationService} from '@services/geolocationService/geolocationService';
 
 import {PermissionError} from 'src/models/error/PermissionError';
+import {QueryKey} from 'src/models/QueryKey';
 
 import {InfoList} from '../InfoList/InfoList';
 import {PermissionBox} from '../PermissionBox/PermissionBox';
 
 export function CoordinatesInfo() {
   const {data, error, isLoading} = useQuery(
-    'geolocation',
+    QueryKey.GEOLOCATION,
     geolocationService.getCurrentCoordinates,
   );
 

@@ -10,6 +10,7 @@ import {useQuery} from 'react-query';
 import {weatherService} from '@services/weatherService/weatherService';
 
 import {DaysOfWeek} from 'src/models/DaysOfWeek';
+import {QueryKey} from 'src/models/QueryKey';
 import {RootStackParamList} from 'src/router/Router';
 import {dateUtils} from 'src/utils/dateUtils';
 
@@ -26,7 +27,7 @@ export function WeatherScreen({route}: ScreenProps) {
     address,
   } = route.params;
 
-  const {data: weatherInfo} = useQuery('weather', () =>
+  const {data: weatherInfo} = useQuery(QueryKey.WEATHER, () =>
     weatherService.getCurrentWeather(latitude, longitude),
   );
 

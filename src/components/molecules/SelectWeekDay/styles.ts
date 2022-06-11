@@ -10,5 +10,4 @@ export const DayBox = styled(PressableBox)<DayBoxProps>`
   border-radius: ${({theme}) => theme.radii[4]}px;
   background-color: ${({theme, isSelected}) =>
     isSelected ? theme.colors.primary : theme.colors.transparent};
-  width: 70px;
 `;

@@ -8,6 +8,7 @@ import {useQuery} from 'react-query';
 import {geolocationService} from '@services/geolocationService/geolocationService';
 
 import {GeoCoordinates} from 'src/models/Geolocation';
+import {QueryKey} from 'src/models/QueryKey';
 
 import {InfoList} from '../InfoList/InfoList';
 
@@ -21,7 +22,7 @@ export function AddressInfo({geoCoordinates}: Props) {
     data: address,
     isLoading,
     error,
-  } = useQuery('address', () =>
+  } = useQuery(QueryKey.ADDRESS, () =>
     geolocationService.getAddressByCoordinates(
       geoCoordinates.latitude,
       geoCoordinates.longitude,
@@ -49,10 +50,9 @@ export function AddressInfo({geoCoordinates}: Props) {
             {label: 'Número', value: address.houseNumber},
           ]}
         />
-
         <Button
           mt={8}
-          variant="secondary"
+          variant="primary"
           iconName="weather-sunny"
           title="VER CLIMA"
           onPress={() =>
