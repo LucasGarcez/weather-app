@@ -48,5 +48,5 @@ export function PermissionBox({status}: Props) {
       );
       break;
   }
-  return <Box>{component}</Box>;
+  return <Box testID="PermissionBox">{component}</Box>;
 }

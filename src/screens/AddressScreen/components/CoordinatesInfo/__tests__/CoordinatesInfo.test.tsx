@@ -5,6 +5,8 @@ import {ComponentWrapper} from 'testUitls/ComponentWrapper';
 
 import {geolocationService} from '@services/geolocationService/geolocationService';
 
+import {PermissionError} from 'src/models/error/PermissionError';
+
 import {CoordinatesInfo} from '../CoordinatesInfo';
 
 import {mock} from './mocks';
@@ -33,6 +35,21 @@ describe('CoordinatesInfo', () => {
 
       expect(getByText(lat)).toBeTruthy();
       expect(getByText(long)).toBeTruthy();
+    });
+  });
+  describe('the service throw a error', () => {
+    it('render PermissionBox', async () => {
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
+      jest
+        .spyOn(geolocationService, 'getCurrentCoordinates')
+        .mockRejectedValueOnce(new PermissionError('blocked'));
+
+      console.warn("You won't see me!");
+      const {findByTestId} = renderComponent();
+
+      const permissionComponent = await findByTestId('PermissionBox');
+
+      expect(permissionComponent).toBeTruthy();
     });
   });
 });
