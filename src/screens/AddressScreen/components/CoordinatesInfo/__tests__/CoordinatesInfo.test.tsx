@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {render} from '@testing-library/react-native';
-import {ComponentWrapper} from '__tests__/ComponentWrapper';
+import {ComponentWrapper} from 'testUitls/ComponentWrapper';
 
 import {geolocationService} from '@services/geolocationService/geolocationService';
 

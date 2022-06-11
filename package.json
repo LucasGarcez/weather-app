@@ -66,6 +66,10 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(@react-native|react-native|react-native-permissions))"
     ],
+    "modulePathIgnorePatterns": [
+      ".mocks.ts"
+    ],
+    "verbose": true,
     "moduleFileExtensions": [
       "ts",
       "tsx",
