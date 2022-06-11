@@ -32,7 +32,7 @@ export function CoordinatesInfo() {
         title="Coordenadas"
         items={[
           {label: 'Latitude', value: data.latitude},
-          {label: 'Longitude', value: data.latitude},
+          {label: 'Longitude', value: data.longitude},
         ]}
       />
     );
