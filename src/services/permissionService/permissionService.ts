@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 
 import {
   check,
+  request,
   PERMISSIONS,
   checkMultiple,
   PermissionStatus,
@@ -9,6 +10,9 @@ import {
 
 async function checkIOSLocation(): Promise<PermissionStatus> {
   const status = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+  if (status === 'denied') {
+    await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+  }
   return status;
 }
 
@@ -20,6 +24,9 @@ async function checkAndroidLocation(): Promise<PermissionStatus> {
   ]);
   // const coarseStatus = status['android.permission.ACCESS_COARSE_LOCATION']
   const fineStatus = status['android.permission.ACCESS_FINE_LOCATION'];
+  if (fineStatus === 'denied') {
+    await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+  }
   return fineStatus;
 }
 
