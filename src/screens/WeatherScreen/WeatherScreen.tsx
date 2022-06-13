@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 
+import {Button} from '@components/atoms/Button/Button';
 import {Heading, Paragraph} from '@components/atoms/Text';
 import {SelectWeekDay} from '@components/molecules/SelectWeekDay/SelectWeekDay';
 import {ScreenTemplate} from '@components/templates/screen/ScreenTemplate';
@@ -27,13 +28,17 @@ export function WeatherScreen({route}: ScreenProps) {
     address,
   } = route.params;
 
-  const {data: weatherInfo} = useQuery(QueryKey.WEATHER, () =>
+  const {
+    data: weatherInfo,
+    refetch,
+    isFetching,
+  } = useQuery(QueryKey.WEATHER, () =>
     weatherService.getCurrentWeather(latitude, longitude),
   );
 
   return (
     <ScreenTemplate canGoBack>
-      <ScrollView nestedScrollEnabled>
+      <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
         <Heading mb={4} size="large">
           Clima Agora
         </Heading>
@@ -65,6 +70,13 @@ export function WeatherScreen({route}: ScreenProps) {
         </Heading>
         <SelectWeekDay value={day} onChangeValue={setDay} />
         {weatherInfo && <DayWeatherInfo day={day} daily={weatherInfo?.daily} />}
+
+        <Button
+          mt={8}
+          isLoading={isFetching}
+          title="Atualizar Dados"
+          onPress={refetch}
+        />
       </ScrollView>
     </ScreenTemplate>
   );
