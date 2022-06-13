@@ -44,7 +44,6 @@ describe('CoordinatesInfo', () => {
         .spyOn(geolocationService, 'getCurrentCoordinates')
         .mockRejectedValueOnce(new PermissionError('blocked'));
 
-      console.warn("You won't see me!");
       const {findByTestId} = renderComponent();
 
       const permissionComponent = await findByTestId('PermissionBox');
