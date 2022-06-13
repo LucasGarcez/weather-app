@@ -5,12 +5,15 @@ async function getCurrentWeather(
   lat: string | number,
   long: string | number,
 ): Promise<WeatherOneCallResponse> {
-  const response = await weatherApi.getCurrentAndForecast(
+  const weatherOneCall = await weatherApi.getCurrentAndForecast(
     lat.toString(),
     long.toString(),
   );
 
-  return response;
+  return weatherOneCall;
 }
 
-export const weatherService = {getCurrentWeather};
+function getIconURL(iconName: string) {
+  return `https://openweathermap.org/img/wn/${iconName}@4x.png`;
+}
+export const weatherService = {getCurrentWeather, getIconURL};
