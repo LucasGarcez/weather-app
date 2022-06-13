@@ -1,12 +1,22 @@
+import getDay from 'date-fns/getDay';
+
 import {DaysOfWeek} from 'src/models/DaysOfWeek';
 
+const days = [
+  DaysOfWeek.Sunday,
+  DaysOfWeek.Monday,
+  DaysOfWeek.Tuesday,
+  DaysOfWeek.Wednesday,
+  DaysOfWeek.Thursday,
+  DaysOfWeek.Wednesday,
+  DaysOfWeek.Friday,
+  DaysOfWeek.Saturday,
+  DaysOfWeek.Sunday,
+];
 function getCurrentDayOfWeek(): DaysOfWeek {
   try {
-    const today = new Date().toLocaleString('en', {
-      weekday: 'long',
-    }) as DaysOfWeek;
-
-    return DaysOfWeek[today];
+    const day = getDay(new Date());
+    return days[day];
   } catch (error) {
     return DaysOfWeek.Monday;
   }
