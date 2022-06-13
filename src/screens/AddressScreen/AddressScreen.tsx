@@ -8,6 +8,8 @@ import {useTheme} from 'styled-components/native';
 
 import {geolocationService} from '@services/geolocationService/geolocationService';
 
+import {QueryKey} from 'src/models/QueryKey';
+
 import {AddressInfo} from './components/AddressInfo/AddressInfo';
 import {CoordinatesInfo} from './components/CoordinatesInfo/CoordinatesInfo';
 
@@ -15,25 +17,29 @@ export function AddressScreen() {
   const {colors} = useTheme();
 
   const {data: geoCoordinates} = useQuery(
-    'geolocation',
+    QueryKey.GEOLOCATION,
     geolocationService.getCurrentCoordinates,
   );
 
   return (
-    <ScreenTemplate>
-      <Box alignItems="center">
-        <Icon name="map-marker-outline" size={150} color={colors.primary} />
-      </Box>
+    <ScreenTemplate pt={4}>
+      <Box flex={1} justifyContent="space-between">
+        <Box>
+          <Box alignItems="center">
+            <Icon name="map-marker-outline" size={100} color={colors.primary} />
+          </Box>
 
-      <Box mt={4}>
-        <CoordinatesInfo />
-      </Box>
+          <Box mt={4}>
+            <CoordinatesInfo />
+          </Box>
 
-      {geoCoordinates && (
-        <Box mt={4}>
-          <AddressInfo geoCoordinates={geoCoordinates} />
+          {geoCoordinates && (
+            <Box mt={4}>
+              <AddressInfo geoCoordinates={geoCoordinates} />
+            </Box>
+          )}
         </Box>
-      )}
+      </Box>
     </ScreenTemplate>
   );
 }
