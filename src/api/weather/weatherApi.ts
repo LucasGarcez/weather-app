@@ -15,7 +15,7 @@ async function getCurrentAndForecast(
   long: string,
 ): Promise<WeatherOneCallResponse> {
   const response = await api.get<WeatherOneCallResponse>(
-    `onecall?lat=${lat}&lon=${long}&appid=${API_KEY}`,
+    `onecall?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`,
   );
 
   return response.data;
