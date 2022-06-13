@@ -72,6 +72,7 @@ export function WeatherScreen({route}: ScreenProps) {
         {weatherInfo && <DayWeatherInfo day={day} daily={weatherInfo?.daily} />}
 
         <Button
+          variant="secondary"
           mt={8}
           isLoading={isFetching}
           title="Atualizar Dados"

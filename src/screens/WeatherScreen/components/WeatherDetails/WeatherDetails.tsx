@@ -41,11 +41,11 @@ export function WeatherDetails({
 
   return (
     <BoxCard padding={0} mt={4}>
-      {lines.map(line => {
+      {lines.map((line, index) => {
         return (
-          <Box flexDirection="row">
+          <Box key={index} flexDirection="row">
             {line.map(item => (
-              <Item {...item} />
+              <Item key={item.value} {...item} />
             ))}
           </Box>
         );
