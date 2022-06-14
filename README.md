@@ -46,6 +46,12 @@ yarn ios
 yarn android
 ```
 
+**Run Tests**
+
+```
+yarn test
+```
+
 ### 🛠 Tech and Libraries
 
 - [React Native](https://reactnative.dev/)
