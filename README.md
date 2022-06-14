@@ -10,6 +10,7 @@ This is a React Native App to show information about location and weather. The A
 Project created with React Native CLI.[ See official docs](https://reactnative.dev/docs/environment-setup) to set up the environment.
 
 **Env Variables**
+
 Create a file called .env in the root of the project with the following variables:
 
 ```
