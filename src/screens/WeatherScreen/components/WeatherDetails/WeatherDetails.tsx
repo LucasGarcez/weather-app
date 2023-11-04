@@ -45,7 +45,7 @@ export function WeatherDetails({
         return (
           <Box key={index} flexDirection="row">
             {line.map(item => (
-              <Item key={item.value} {...item} />
+              <Item key={item.label} {...item} />
             ))}
           </Box>
         );
